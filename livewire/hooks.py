@@ -20,7 +20,7 @@ app_license = "mit"
 # 		"has_permission": "livewire.api.permission.has_app_permission"
 # 	}
 # ]
-
+app_include_js =["livewire.bundle.js"]
 # Includes in <head>
 # ------------------
 

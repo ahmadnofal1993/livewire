@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:notification_name",
+ "creation": "2025-12-09 00:15:03.934418",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "notification_name",
+  "duration",
+  "can_close",
+  "column_break_uvfv",
+  "scheme",
+  "icon",
+  "icon_size",
+  "icon_display",
+  "message_script_section",
+  "live_script",
+  "actions_section",
+  "actions",
+  "actions_array"
+ ],
+ "fields": [
+  {
+   "fieldname": "notification_name",
+   "fieldtype": "Data",
+   "label": "Notification Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "duration",
+   "fieldtype": "Int",
+   "label": "Duration"
+  },
+  {
+   "fieldname": "column_break_uvfv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "scheme",
+   "fieldtype": "Select",
+   "label": "Scheme",
+   "options": "red\nblue\ngreen\norange"
+  },
+  {
+   "fieldname": "icon",
+   "fieldtype": "Select",
+   "label": "Icon",
+   "options": "es-line-activity\nes-line-add\nes-line-add-circle\nes-line-add-emoji\nes-line-add-people\nes-line-agent\nes-line-agent-alt\nes-line-alert-circle\nes-line-alert-triangle\nes-line-align\nes-line-align-center\nes-line-align-justify\nes-line-align-right\nes-line-all-apps\nes-line-all-apps\nes-line-archive\nes-line-arrow-left\nes-line-arrow-right\nes-line-arrow-up-right\nes-line-article\nes-line-attachment\nes-line-bold\nes-line-book\nes-line-bullet-list\nes-line-calender\nes-line-call\nes-line-camera\nes-line-certificates\nes-line-chart\nes-line-chat\nes-line-chat-alt\nes-line-check\nes-line-close\nes-line-close-circle\nes-line-cloud\nes-line-code\nes-line-colour\nes-line-compact\nes-line-copy\nes-line-copy-light\nes-line-create-ticket\nes-line-cursor\nes-line-customer\nes-line-darkmode\nes-line-dash\nes-line-dashboard\nes-line-decrease-indent\nes-line-delete\nes-line-delete-alt\nes-line-demand-video\nes-line-details\nes-line-discussions\nes-line-dislike\nes-line-divider\nes-line-divider\nes-line-dot\nes-line-dot-horizontal\nes-line-dot-vertical\nes-line-double-check\nes-line-down\nes-line-download\nes-line-download\nes-line-drag\nes-line-duplicate\nes-line-edit\nes-line-edit-alt\nes-line-email\nes-line-embed\nes-line-emoji\nes-line-emoji\nes-line-expand\nes-line-file-upload\nes-line-filetype\nes-line-filter\nes-line-folder\nes-line-folder-alt\nes-line-folder-shared\nes-line-folder-upload\nes-line-globe\nes-line-group\nes-line-header-column\nes-line-header-row\nes-line-heart\nes-line-hide\nes-line-home\nes-line-image\nes-line-image-alt1\nes-line-inbox\nes-line-increase-indent\nes-line-italic\nes-line-laptop\nes-line-left-chevron\nes-line-like\nes-line-like\nes-line-link\nes-line-location\nes-line-location\nes-line-lock\nes-line-log-out\nes-line-manage\nes-line-mark-unread\nes-line-minimise\nes-line-mobile\nes-line-move\nes-line-new-folder\nes-line-nextweek\nes-line-notes\nes-line-notifications\nes-line-notifications-unseen\nes-line-numbered-list\nes-line-overdue\nes-line-overflow\nes-line-pages\nes-line-pages\nes-line-pages-alt\nes-line-payments\nes-line-pentagon\nes-line-people\nes-line-pin\nes-line-plan\nes-line-plans\nes-line-preview\nes-line-privacy-alt\nes-line-progress\nes-line-progress25%\nes-line-question\nes-line-quiz\nes-line-quote\nes-line-quotes-alt\nes-line-reload\nes-line-reply\nes-line-reply\nes-line-reply-all\nes-line-reports\nes-line-resizer\nes-line-restrictions\nes-line-right-chevron\nes-line-search\nes-line-security\nes-line-select\nes-line-select-file\nes-line-settings\nes-line-share\nes-line-share\nes-line-sidebar-collapse\nes-line-sidebar-expand\nes-line-slash\nes-line-sort\nes-line-sparkle\nes-line-square\nes-line-star\nes-line-status\nes-line-storage\nes-line-strike-through\nes-line-success\nes-line-support\nes-line-table-view\nes-line-tag\nes-line-teams\nes-line-template\nes-line-text-cursor\nes-line-tick\nes-line-ticket\nes-line-ticket-alt\nes-line-ticket-no-\nes-line-tiles\nes-line-time\nes-line-title\nes-line-today\nes-line-today-alt\nes-line-tomorrow\nes-line-unarchive\nes-line-underline\nes-line-unlock\nes-line-unpin\nes-line-up\nes-line-upload\nes-line-video\nes-line-web\nes-line-web-link\nes-line-weekend\nes-line-wifi-off\nes-line-youtube\nes-line-zap\nes-small-add\nes-small-close\nes-small-down\nes-small-left\nes-small-right\nes-small-up\nes-solid-aftereffects\nes-solid-agent\nes-solid-agent\nes-solid-alert-circle\nes-solid-alert-triangle\nes-solid-apple\nes-solid-arrow-up\nes-solid-audio\nes-solid-black\nes-solid-book\nes-solid-calendar\nes-solid-close-circle\nes-solid-color-wheel\nes-solid-customer\nes-solid-dashboard\nes-solid-details\nes-solid-doc\nes-solid-dot\nes-solid-down\nes-solid-dropbox\nes-solid-dropbox\nes-solid-everyone\nes-solid-excel\nes-solid-external-link\nes-solid-facebook\nes-solid-fire\nes-solid-folder\nes-solid-folder-alt\nes-solid-github\nes-solid-google\nes-solid-heading\nes-solid-heart\nes-solid-home\nes-solid-illustrator\nes-solid-image\nes-solid-image\nes-solid-inprogress\nes-solid-knob\nes-solid-left\nes-solid-lighting\nes-solid-link\nes-solid-location\nes-solid-location\nes-solid-location-alt\nes-solid-music\nes-solid-notes\nes-solid-notification\nes-solid-organization\nes-solid-pdf\nes-solid-people\nes-solid-photoshop\nes-solid-pin\nes-solid-play\nes-solid-play\nes-solid-quiz\nes-solid-report\nes-solid-right\nes-solid-search\nes-solid-settings\nes-solid-shared-folder\nes-solid-shared-folder-alt\nes-solid-sketch\nes-solid-stage\nes-solid-star\nes-solid-success\nes-solid-tag\nes-solid-text\nes-solid-text-alt\nes-solid-ticket\nes-solid-ticket-alt\nes-solid-title\nes-solid-type\nes-solid-up\nes-solid-user\nes-solid-video\nes-solid-white\nes-solid-word\nes-solid-youtube\nes-solid-zip\nespressoline---polyline\naccounting\nadd\nadd-round\nagriculture\narrow-down-left\narrow-down-right\narrow-left\narrow-right\narrow-up-right\nassets\nassign\nattachment\nboth\nbranch\nbuying\ncalendar\ncall\ncard\nchange\nchart\ncheck\nclap\nclipboard\nclose\nclose-alt\ncollapse\ncolor-energy-points\ncolor-monthly-rank\ncolor-rank\ncolor-review-points\ncomment\ncriticize\ncrm\ncrop\ncustomer\ncustomization\ndashboard\ndashboard-list\ndelete\ndelete-active\ndialpad\ndot-horizontal\ndot-vertical\ndown\ndown-arrow\ndrag\ndrag-sm\nduplicate\nedit\nedit-fill\nedit-round\neducation\nequity\nexpand\nexpand-alt\nexpenses\nexternal-link\nfile\nfile-large\nfilter\nfilter-x\nfolder-normal\nfolder-normal-large\nfolder-open\nfull-page\ngantt\ngetting-started\ngroup-by\nheader\nheader-1\nheader-2\nheader-3\nheader-4\nheader-5\nheader-6\nhealthcare\nheart\nheart-active\nhelp\nhide\nhr\nimage\nimage-view\nincome\ninsert-above\ninsert-below\nintegration\nkanban\nkeyboard\nleft\nliabilities\nlink-url\nlist\nlist-alt\nloan\nlock\nmail\nmap\nmark-as-read\nmenu\nmessage\nmessage-1\nmilestone\nmoney-coins-1\nmonth-view\nmove\nnon-profit\nnotification\nnotification-with-indicator\nnumber-card\nonboarding\norganization\npen\npermission\nprimitive-dot\nprinter\nproject\nproject-1\nproject-2\nprojects\nquality\nquality-3\nquantity-1\nread-status\nrefresh\nremove\nreply\nreply-all\nrestriction\nretail\nreview\nright\nscan\nsearch\nselect\nsell\nsetting\nsetting-gear\nshare\nshare-people\nshortcut\nshrink\nsidebar-collapse\nsidebar-expand\nsmall-add\nsmall-down\nsmall-file\nsmall-message\nsmall-up\nsolid-error\nsolid-info\nsolid-success\nsolid-warning\nsort\nsort-ascending\nsort-descending\nspacer\nstar\nstock\nsupport\ntable\ntable_2\ntag\ntext\ntick\ntoday\ntool\nunhide\nunlock\nunread-status\nup\nup-arrow\nup-line\nupload\nupload-lg\nusers\nview\nwebsite\nworkflow"
+  },
+  {
+   "fieldname": "icon_display",
+   "fieldtype": "HTML",
+   "label": "Icon Display"
+  },
+  {
+   "fieldname": "icon_size",
+   "fieldtype": "Select",
+   "label": "Icon Size",
+   "options": "sm\nmd\nlg\nxl"
+  },
+  {
+   "fieldname": "message_script_section",
+   "fieldtype": "Section Break",
+   "label": "Message Script"
+  },
+  {
+   "description": "you need to use params.\"parameter_name\" that will replace in  notification",
+   "fieldname": "live_script",
+   "fieldtype": "Code",
+   "label": "Script",
+   "options": "Python"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_close",
+   "fieldtype": "Check",
+   "label": "Can Close"
+  },
+  {
+   "fieldname": "actions_section",
+   "fieldtype": "Section Break",
+   "label": "Actions"
+  },
+  {
+   "fieldname": "actions",
+   "fieldtype": "Table",
+   "label": "Actions",
+   "options": "Live Notification Actions"
+  },
+  {
+   "fieldname": "actions_array",
+   "fieldtype": "Long Text",
+   "label": "Actions Array",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-12 23:53:07.646207",
+ "modified_by": "Administrator",
+ "module": "LiveWire",
+ "name": "Live Notification Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
