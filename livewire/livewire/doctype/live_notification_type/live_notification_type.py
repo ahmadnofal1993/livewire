@@ -9,5 +9,5 @@ class LiveNotificationType(Document):
 	def on_update(self):
 		actions=[]
 		for action in self.actions:
-			actions.append(str(action.name)+'-'+str(action.action)+'-'+str(action.focus))
+			actions.append(str(action.name)+'-'+str(action.action)+'-'+str(action.focus)+'-'+str(action.color))
 		self.db_set('actions_array',str(actions),False,False,True)

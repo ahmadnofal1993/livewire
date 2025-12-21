@@ -9,6 +9,7 @@
   "action",
   "focus",
   "can_close",
+  "color",
   "action_script"
  ],
  "fields": [
@@ -38,13 +39,19 @@
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "Close Notification"
+  },
+  {
+   "fieldname": "color",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Color"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-12-13 13:27:51.960679",
+ "modified": "2025-12-19 18:19:50.861682",
  "modified_by": "Administrator",
  "module": "LiveWire",
  "name": "Live Notification Actions",

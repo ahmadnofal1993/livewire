@@ -1,5 +1,5 @@
 (() => {
-  // ../livewire/livewire/public/js/livewire.bundle.js
+  // ../livewire/livewire/public/js/livewire_notification.js
   frappe.provide("crm");
   on_answer_click = function(id, btn) {
     let parent = btn.parentElement.parentElement.parentElement;
@@ -13,6 +13,7 @@
           console.log(r.message);
           if (r.message[0].hasOwnProperty("href")) {
             console.log("Href found:", r.message[0].href);
+            window.location.href = r.message.href;
           } else if (r.message[0].hasOwnProperty("result")) {
             console.log("Result found:", r.message[0].result);
           }
@@ -46,11 +47,12 @@
     for (let i = 0; i < live_actions.length; i++) {
       let parts = live_actions[i].split("-");
       let isPrimary = parts[3] == "1";
-      let btnClass = isPrimary ? "btn btn-xs btn-primary" : "btn btn-xs btn-secondary";
+      let btnClass = isPrimary ? "btn btn-primary" : "btn btn-secondary";
       action_section += `
-        <button style="padding:0px 12px;" 
-                id="${parts[0]}-"${parts[1]} 
+        <button 
+                id="${parts[0]}-${parts[1]}"
                 class="${btnClass}" 
+				style="background-color:${parts[4]}"
                 onclick="on_answer_click('${parts[0]}-${parts[1]}',this)">
 				${parts[2]}
         </button>`;
@@ -63,7 +65,7 @@
 					<div class="alert-message">${message.message}</div>
 				</div>
 				<div class="alert-subtitle">${message.subtitle || ""}</div>
-				<div id=actions style='margin-top: 25px;'>
+				<div id=actions style='margin-top: 10px;display:flex;justify-content:space-between;'>
 				 
 				</div>
 			</div>
@@ -74,7 +76,7 @@
     div.find("#actions").append(action_section);
     if (allow_close == true) {
       div.append(`<a class="close">${frappe.utils.icon("close-alt")}</a>`);
-      div.find(".close, button").click(function() {
+      div.find(".close").click(function() {
         div.addClass("out");
         setTimeout(() => div.remove(), 800);
         return false;
@@ -121,6 +123,7 @@
                     </button>
                 </div>
             `;
+        console.log(__(data.message, data.list));
         crm.show_alert({
           message: data.message,
           indicator: data.indicator
@@ -128,5 +131,65 @@
       });
     }
   };
+
+  // ../livewire/livewire/public/js/socket_keepalive.js
+  $(document).ready(function() {
+    window.addEventListener("storage", function(event) {
+      if (event.key === "frappe_broadcast_reload" && event.newValue) {
+        console.log("Reload signal received from another tab.");
+        if (cur_frm && cur_frm.is_dirty()) {
+          frappe.show_alert({
+            message: __("\u26A0\uFE0F Another tab triggered a reload, but you have unsaved changes here. Please save manually."),
+            indicator: "orange"
+          }, 8);
+        } else {
+          frappe.show_alert({
+            message: __("Syncing with other tabs... reloading."),
+            indicator: "blue"
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
+      }
+    });
+    const original_clear_cache = frappe.ui.toolbar.clear_cache;
+    frappe.ui.toolbar.clear_cache = function() {
+      localStorage.setItem("frappe_broadcast_reload", Date.now());
+      original_clear_cache();
+    };
+    console.log("Initializing Socket Keep-Alive mechanism...");
+    const CHECK_INTERVAL = 6e5;
+    function ensure_connection() {
+      if (frappe.session.user === "Guest")
+        return;
+      if (frappe.realtime && frappe.realtime.socket) {
+        if (!frappe.realtime.socket.connected) {
+          console.warn("\u26A0\uFE0F Socket disconnected. Forcing reconnection...");
+          frappe.realtime.connect();
+          if (frappe.realtime.socket.io) {
+            frappe.realtime.socket.io.reconnection(true);
+            frappe.realtime.socket.open();
+          }
+        }
+      }
+    }
+    document.addEventListener("visibilitychange", function() {
+      if (document.visibilityState === "visible") {
+        console.log("Tab active: checking socket health.");
+        ensure_connection();
+      }
+    });
+    setInterval(ensure_connection, CHECK_INTERVAL);
+    frappe.realtime.on("disconnect", () => {
+      console.log("Socket event: disconnected. Scheduling reconnect...");
+      setTimeout(ensure_connection, 1e3);
+    });
+    if (frappe.realtime.socket) {
+      frappe.realtime.socket.on("reconnect_error", (error) => {
+        console.log("Server unreachable. Waiting...");
+      });
+    }
+  });
 })();
-//# sourceMappingURL=livewire.bundle.66MO54OP.js.map
+//# sourceMappingURL=livewire.bundle.LV44ZRJS.js.map
