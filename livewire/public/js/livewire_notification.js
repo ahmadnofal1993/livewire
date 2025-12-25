@@ -79,7 +79,7 @@ crm.show_alert = function (message, seconds = 7,allow_close=true,icon,icon_size,
         <button 
                 id="${parts[0]}-${parts[1]}"
                 class="${btnClass}" 
-				style="background-color:${parts[4]}"
+				style="${parts[4]}"
                 onclick="on_answer_click('${parts[0]}-${parts[1]}',this)">
 				${parts[2]}
         </button>`;
@@ -88,10 +88,10 @@ crm.show_alert = function (message, seconds = 7,allow_close=true,icon,icon_size,
 	   
 	const div = $(`
 		<div class="alert desk-alert ${indicator}" role="alert">
-			<div class="alert-message-container">
+			<div class="alert-message-container" >
 				<div class="alert-title-container">
 					<div>${frappe.utils.icon(icon, icon_size)}</div>
-					<div class="alert-message">${message.message}</div>
+					<div class="alert-message" style="width : 100%;">${message.message}</div>
 				</div>
 				<div class="alert-subtitle">${message.subtitle || ""}</div>
 				<div id=actions style='margin-top: 10px;display:flex;justify-content:space-between;'>
