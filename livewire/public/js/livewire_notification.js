@@ -5,7 +5,9 @@ on_answer_click = function(id,btn) {
 	let parent = ((btn.parentElement).parentElement).parentElement;
 
     
- 
+	console.log(id);
+	console.log(btn);
+	console.log( "livewire.utils.action_click");
     frappe.call({
 		method: "livewire.utils.action_click",   // dotted path to server method
 		args: {
@@ -13,16 +15,20 @@ on_answer_click = function(id,btn) {
 			 
 		},
 		callback: function(r) {
+			console.log(r.message.code);
 			 
 			if (!r.exc) {
-				console.log(r.message);
-				if (r.message[0].hasOwnProperty("href")) {
-					console.log("Href found:", r.message[0].href);
-					window.location.href = r.message.href;
-				} else if (r.message[0].hasOwnProperty("result")) {
-					console.log("Result found:", r.message[0].result);
+				
+				if ( r.message.code.match(/'href':\s*'([^']+)'/)) {
+					let new_location=r.message.code.match(/'href':\s*'([^']+)'/)[1];
+					console.log("Href found:",new_location );
+					window.location.href = new_location;
+					 
+					 
+				} else if ( r.message.code.match(/'result':\s*'([^']+)'/)) {
+					console.log("Result found:", r.message.code.match(/'result':\s*'([^']+)'/)[1]);
 				}
-				if (r.message[1]==1)
+				if (r.message.can_close==1)
 				{
 					$(parent).addClass("out");
 					setTimeout(() => parent.remove(), 800);
@@ -149,6 +155,15 @@ frappe.Application = class CustomApplication extends OriginalApplication {
         if (super.show_pending_notifications) {
             super.show_pending_notifications();
         }
+		frappe.realtime.on('force_reload_from_server', function(data) {
+			console.log("Server requested reload.");
+			 
+			setTimeout(() => {
+				window.location.reload();
+			}, 1000); 
+		});
+
+
        		frappe.realtime.on("livewire_notification", function(data) {
                console.log(data);
 			  
