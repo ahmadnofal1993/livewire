@@ -87,7 +87,7 @@ crm.show_alert = function (message, seconds = 7,allow_close=true,icon,icon_size,
                 class="${btnClass}" 
 				style="${parts[4]}"
                 onclick="on_answer_click('${parts[0]}-${parts[1]}',this)">
-				${parts[2]}
+				${__(parts[2])} 
         </button>`;
 	  }
 
@@ -147,14 +147,8 @@ frappe.Application = class CustomApplication extends OriginalApplication {
         console.log("Custom Application constructor called");
 		this.show_pending_notifications();
     }
-
-    // Example: override a method
-    show_pending_notifications() {
-        console.log("Custom notification logic");
-        // call original if needed
-        if (super.show_pending_notifications) {
-            super.show_pending_notifications();
-        }
+	force_reload()
+	{
 		frappe.realtime.on('force_reload_from_server', function(data) {
 			console.log("Server requested reload.");
 			 
@@ -162,6 +156,16 @@ frappe.Application = class CustomApplication extends OriginalApplication {
 				window.location.reload();
 			}, 1000); 
 		});
+	}
+    // Example: override a method
+    show_pending_notifications() {
+        console.log("Custom notification logic");
+		this.force_reload()
+        // call original if needed
+        if (super.show_pending_notifications) {
+            super.show_pending_notifications();
+        }
+		
 
 
        		frappe.realtime.on("livewire_notification", function(data) {
@@ -225,9 +229,10 @@ frappe.Application = class CustomApplication extends OriginalApplication {
                indicator: 'red',
 			   subtitle :'Test'
              }, 700); */
-			 console.log(__(data.message,data.list));
+			 //let translated_msg = __(data.msg); 
+			 
 			 crm.show_alert({
-				message: data.message,
+				message:  __(data.message),
 			  indicator: data.indicator
 			}, data.duration,data.allow_close,data.icon,data.icon_size, data.actions			);
             

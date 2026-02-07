@@ -58,7 +58,7 @@
                 class="${btnClass}" 
 				style="${parts[4]}"
                 onclick="on_answer_click('${parts[0]}-${parts[1]}',this)">
-				${parts[2]}
+				${__(parts[2])} 
         </button>`;
     }
     const div = $(`
@@ -106,17 +106,20 @@
       console.log("Custom Application constructor called");
       this.show_pending_notifications();
     }
-    show_pending_notifications() {
-      console.log("Custom notification logic");
-      if (super.show_pending_notifications) {
-        super.show_pending_notifications();
-      }
+    force_reload() {
       frappe.realtime.on("force_reload_from_server", function(data) {
         console.log("Server requested reload.");
         setTimeout(() => {
           window.location.reload();
         }, 1e3);
       });
+    }
+    show_pending_notifications() {
+      console.log("Custom notification logic");
+      this.force_reload();
+      if (super.show_pending_notifications) {
+        super.show_pending_notifications();
+      }
       frappe.realtime.on("livewire_notification", function(data) {
         console.log(data);
         let icon = frappe.utils.icon("phone", "sm");
@@ -133,9 +136,8 @@
                     </button>
                 </div>
             `;
-        console.log(__(data.message, data.list));
         crm.show_alert({
-          message: data.message,
+          message: __(data.message),
           indicator: data.indicator
         }, data.duration, data.allow_close, data.icon, data.icon_size, data.actions);
       });
@@ -202,4 +204,4 @@
     }
   });
 })();
-//# sourceMappingURL=livewire.bundle.4ERJ4X3Z.js.map
+//# sourceMappingURL=livewire.bundle.UG5VDNO2.js.map

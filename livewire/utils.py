@@ -32,7 +32,8 @@ def execute_code(code,parameter):
 			"params": doc_obj
 		}
         object_from_code = {}
-        
+   
+         
         exec(code, _locals, object_from_code)
         return object_from_code
          
